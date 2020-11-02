@@ -26,6 +26,8 @@ declare module 'styled-components' {
       textInverse: ITextColor;
       bg: string;
       bgInverse: string;
+      borderColor: string;
+      borderFocus: string;
     };
     lineHeight: number;
     fontFamily: string;

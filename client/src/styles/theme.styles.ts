@@ -4,9 +4,9 @@ const fontSizes = [12, 14, 16, 18, 24, 34, 58, 72];
 
 const colors = {
   primary: {
-    light: '#71b7e6',
-    main: '#48a2df',
-    dark: '#2a7aaf',
+    light: '#48c9b0',
+    main: '#1abc9c',
+    dark: '#17a98c',
   },
   secondary: {
     light: '#f5a092',
@@ -41,13 +41,15 @@ const colors = {
     main: '#fff',
     secondary: '#e9eaeb',
   },
-  bg: '#272c36',
-  bgInverse: '#fff',
+  bgInverse: '#272c36',
+  bg: '#fff',
+  borderColor: 'rgba(39,44,54,.3)',
+  borderFocus: 'rgba(39,44,54,.8)',
 };
 
 const lineHeight = 1.5;
-const fontFamily = "'Source Sans Pro', Helvetica, sans-serif";
-const fontWeights = [400, 600, 700];
+const fontFamily = "'Nato Sans', Helvetica, sans-serif";
+const fontWeights = [400, 700];
 
 const Theme: DefaultTheme = {
   colors,
@@ -56,7 +58,7 @@ const Theme: DefaultTheme = {
   fontSizes,
   fontWeights,
   fontSizeBase: fontSizes[2],
-  borderRadius: '2px',
+  borderRadius: '6px',
 };
 
 export default Theme;

@@ -14,6 +14,7 @@ export default createGlobalStyle`
         box-sizing:border-box;
         height:100%;
         width:100%;
+        font-size:10px;
     }
     
     #root,
@@ -29,7 +30,7 @@ export default createGlobalStyle`
           background-color: ${theme.colors.bg};
           line-height: ${theme.lineHeight};
           font-size: ${theme.fontSizeBase}px;
-          color: ${theme.colors.textInverse.main};
+          color: ${theme.colors.text.main};
           font-family: ${theme.fontFamily};
         `};
     }
