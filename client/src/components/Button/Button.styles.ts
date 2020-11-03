@@ -43,7 +43,7 @@ const styles: { [key: string]: CSSProp } = {
   danger: DangerStyles,
 };
 
-export const StyledButton = styled.button<ButtonStylesProps>`
+export default styled.button<ButtonStylesProps>`
   background: none;
   border: none;
   display: flex;
@@ -52,15 +52,14 @@ export const StyledButton = styled.button<ButtonStylesProps>`
   height: 100%;
   cursor: pointer;
   outline: none;
+  text-transform: capitalize;
   transition: all 150ms ease-in-out;
   ${({ theme, Size, rounded }) => css`
     font-weight: ${theme.fontWeights[1]};
     font-size: ${theme.fontSizes[1]}px;
     line-height: ${theme.lineHeight};
     padding: ${butonSize[Size as string]};
-    border-radius: ${rounded ? '3rem' : '4px'};
+    border-radius: ${rounded ? '2.4rem' : '4px'};
   `};
   ${(props) => styles[props.variant as string]};
 `;
-
-export const ts = '';

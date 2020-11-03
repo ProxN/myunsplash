@@ -52,7 +52,7 @@ export default createGlobalStyle`
         }
     }
 
-    
+/*     
     ::-webkit-scrollbar {
         background:#2d2b4c;
         width:5px;
@@ -61,5 +61,5 @@ export default createGlobalStyle`
         background:#484567;
         border-radius:5px;
     }
-    
+     */
 `;

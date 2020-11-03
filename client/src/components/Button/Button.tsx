@@ -1,8 +1,12 @@
 import React from 'react';
-import { StyledButton } from './Button.styles';
+import StyledButton from './Button.styles';
 import { ButtonStylesProps } from './types';
 
-const Button: React.FC<ButtonStylesProps> = (props) => {
+interface ButtonProps extends ButtonStylesProps {
+  onClick?: () => void;
+}
+
+const Button: React.FC<ButtonProps> = (props) => {
   return <StyledButton {...props} />;
 };
 

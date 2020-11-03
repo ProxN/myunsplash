@@ -5,20 +5,26 @@ import { InputStyleProps } from './types';
 interface InputProps extends InputStyleProps {
   placeholder?: string;
   icon?: React.ReactNode;
+  label?: string;
+  type?: 'text' | 'password' | 'email';
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  name?: string;
+  value?: string;
 }
 
 const Input: React.FC<InputProps> = (props) => {
-  const { icon } = props;
+  const { icon, value } = props;
   return (
     <InputContainer>
       {icon && <IconBox>{icon}</IconBox>}
-      <StyledInput showIcon={!!icon} {...props} />
+      <StyledInput value={value || ''} showIcon={!!icon} {...props} />
     </InputContainer>
   );
 };
 
 Input.defaultProps = {
   Size: 'default',
+  type: 'text',
 };
 
 export default Input;

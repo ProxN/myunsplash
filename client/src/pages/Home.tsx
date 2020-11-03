@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Button from '../components/Button';
+import DeletePhoto from '../components/DeletePhoto';
+import usePhotoStore from '../store/photoStore';
 import {
   Container,
   Grid,
@@ -10,76 +12,62 @@ import {
   ImageLabel,
 } from './Home.styles';
 
-const images = [
-  {
-    key: 1,
-    url: 'https://picsum.photos/451/750',
-  },
-  {
-    key: 2,
-    url: 'https://picsum.photos/407/550',
-  },
-  {
-    key: 3,
-    url: 'https://picsum.photos/698/800',
-  },
-  {
-    key: 4,
-    url: 'https://picsum.photos/401/800',
-  },
-  {
-    key: 5,
-    url: 'https://picsum.photos/556/748',
-  },
-  {
-    key: 6,
-    url: 'https://picsum.photos/556/749',
-  },
-  {
-    key: 7,
-    url: 'https://picsum.photos/556/750',
-  },
-  {
-    key: 8,
-    url: 'https://picsum.photos/556/751',
-  },
-  {
-    key: 9,
-    url: 'https://picsum.photos/556/752',
-  },
-  {
-    key: 10,
-    url: 'https://picsum.photos/556/753',
-  },
-];
-
 const spans = [1, 2, 3];
 
-const Photo: React.FC<{ url: string }> = ({ url }) => {
+interface PhotoProps {
+  url: string;
+  id: string;
+  label: string;
+}
+
+const Photo: React.FC<PhotoProps> = ({ url, id, label }) => {
+  const { showDeleteModal } = usePhotoStore();
   return (
-    <PhotoBox rowSpan={spans[Math.floor(Math.random() * 3)]}>
-      <PhotoOverlay>
-        <OveryLayAction>
-          <Button rounded variant='danger'>
-            delete
-          </Button>
-        </OveryLayAction>
-        <ImageLabel>Hello World</ImageLabel>
-      </PhotoOverlay>
-      <Img src={url} />
-    </PhotoBox>
+    <>
+      <PhotoBox rowSpan={spans[Math.floor(Math.random() * 3)]}>
+        <PhotoOverlay>
+          <OveryLayAction>
+            <Button
+              onClick={() => showDeleteModal(id)}
+              rounded
+              variant='danger'
+            >
+              delete
+            </Button>
+          </OveryLayAction>
+          <ImageLabel>{label}</ImageLabel>
+        </PhotoOverlay>
+        <Img src={url} />
+      </PhotoBox>
+    </>
   );
 };
 
 const Home: React.FC = () => {
+  const { getPhotos, photos, deleteModal } = usePhotoStore();
+
+  useEffect(() => {
+    const onLoad = async (): Promise<void> => {
+      await getPhotos();
+    };
+    onLoad();
+  }, []);
+
   return (
-    <Container>
-      <Grid>
-        {images.map((el) => (
-          <Photo url={el.url} key={el.key} />
-        ))}
-      </Grid>
-    </Container>
+    <>
+      <Container>
+        <Grid>
+          {photos.length > 0 ? (
+            photos.map((el) => (
+              <Photo id={el._id} url={el.url} key={el._id} label={el.label} />
+            ))
+          ) : (
+            <h1 style={{ textAlign: 'center' }}>No photos</h1>
+          )}
+        </Grid>
+      </Container>
+      {deleteModal && <DeletePhoto />}
+    </>
   );
 };
 

@@ -23,12 +23,13 @@ export const IconBox = styled.div`
 `;
 
 export const StyledInput = styled.input<InputStyleProps>`
-  ${({ theme, rounded, Size, showIcon }) => css`
+  ${({ theme, rounded, Size, showIcon, fullWidth }) => css`
     border: 1px solid ${theme.colors.borderColor};
     font-weight: ${theme.fontWeights[1]};
-    border-radius: ${rounded ? '3rem' : '.4rem'};
+    border-radius: ${rounded ? '2.4rem' : '.4rem'};
     padding: ${inputSize[Size as string]};
     padding-left: ${showIcon && '3.5rem'};
+    width: ${fullWidth && '100%'};
     :focus {
       border-color: ${theme.colors.borderFocus};
     }
@@ -38,4 +39,7 @@ export const StyledInput = styled.input<InputStyleProps>`
   }
   line-height: 1.5;
   outline: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 `;

@@ -22,8 +22,8 @@ export const PhotoOverlay = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border-radius: 3rem;
-  background: rgba(0, 0, 0, 0.4);
+  border-radius: 2.4rem;
+  background: rgba(0, 0, 0, 0.6);
   transition: all 150ms ease-in-out;
   transform: scale(0);
   opacity: 0;
@@ -31,7 +31,7 @@ export const PhotoOverlay = styled.div`
 
 export const PhotoBox = styled.div<{ rowSpan?: number }>`
   grid-row: span ${({ rowSpan }) => rowSpan};
-  border-radius: 3rem;
+  border-radius: 2.4rem;
   box-shadow: 0 0 10px -2px rgba(0, 0, 0, 0.2);
   transition: all 150ms ease-in-out;
   position: relative;
@@ -63,5 +63,5 @@ export const Img = styled.img`
   width: 100%;
   object-fit: cover;
   object-position: center;
-  border-radius: 3rem;
+  border-radius: 2.4rem;
 `;
