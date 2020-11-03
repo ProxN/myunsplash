@@ -1,15 +1,16 @@
 import { Router } from 'express';
 import {
-  uploadImage,
   addImage,
-  reizeImage,
   deleteImage,
+  checkUser,
+  getImages,
 } from './gallery.controller';
 
 const router = Router();
 
-router.route('/').post(uploadImage, reizeImage, addImage);
+router.route('/').post(addImage);
+router.route('/images/:userId').get(getImages);
 
-router.route('/:id').delete(deleteImage);
+router.route('/:id').post(checkUser, deleteImage);
 
 export default router;

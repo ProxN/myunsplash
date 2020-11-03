@@ -6,7 +6,9 @@ export interface IUser {
   password: string;
 }
 
-export interface IUserSchema extends IUser, Document {}
+export interface IUserSchema extends IUser, Document {
+  correctPassword(password: string, hashPassword: string): boolean;
+}
 
 const userSchema = new Schema(
   {
@@ -30,6 +32,13 @@ userSchema.pre<IUserSchema>('save', async function (next) {
   this.password = await bcrypt.hash(this.password, 12);
   next();
 });
+
+userSchema.methods.correctPassword = async function (
+  password: string,
+  hashPassword: string
+) {
+  return await bcrypt.compare(password, hashPassword);
+};
 
 const userModel = mongoose.model<IUserSchema>('User', userSchema);
 

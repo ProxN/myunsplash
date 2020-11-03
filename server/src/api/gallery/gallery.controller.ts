@@ -13,6 +13,17 @@ export const addImage = catchAsync(
   }
 );
 
+export const getImages = catchAsync(
+  async (req: Request, res: Response, next: NextFunction) => {
+    const images = await galleryService.getImages(req.params.userId);
+
+    res.status(200).json({
+      status: 'success',
+      data: images,
+    });
+  }
+);
+
 export const { uploadImage } = galleryService;
 
 export const reizeImage = catchAsync(
@@ -39,5 +50,15 @@ export const deleteImage = catchAsync(
       status: 'success',
       data: null,
     });
+  }
+);
+
+export const checkUser = catchAsync(
+  async (req: Request, res: Response, next: NextFunction) => {
+    await galleryService.checkUser({
+      username: req.body.username,
+      password: req.body.password,
+    });
+    next();
   }
 );

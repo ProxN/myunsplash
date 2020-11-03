@@ -6,6 +6,15 @@ export const createUser = async (body: IUser): Promise<IUserSchema> => {
     throw new AppError('Missing username or password!', 404);
   }
 
+  const userExists = await userModel.findOne({ username: body.username });
+
+  if (
+    userExists &&
+    (await userExists?.correctPassword(body.password, userExists.password))
+  ) {
+    return userExists;
+  }
+
   const user = await userModel.create(body);
 
   return user;
